@@ -61,12 +61,9 @@ namespace Jwt7.Controllers
             //در شرط پایین گفتیم که اگر کاربر رو پیدا کردی اما پسوردی که ارسال شده با پسورد توی دیتابیس یکی نبود، به کاربر یه پیغام خطا نشون بده
             if(user.PasswordHash != GetHash(registerViewModel.PasswordHash))
                 return Conflict("رمز عبور صحیح نیست.");
-            
-            var jwtFilde = new JwtDto
-            {
-                Token = GenerateToken.GetToken(user),
-            };
-            return Ok(jwtFilde);
+
+         
+            return Ok(GenerateToken.GetToken(user));
         }
 
         [Authorize]
